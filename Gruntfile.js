@@ -17,11 +17,11 @@
  *                     both the minified and unminified code. If you need to debug
  *                     a test suite in a browser, `grunt test --keepalive` will
  *                     start the connect server and leave it running; the tests
- *                     can then be opened at localhost:9001/test/test.html
+ *                     can then be opened at localhost:3021/test/test.html
  *
  *  grunt yui:dev     - This rebuilds the inline documentation. It also rebuilds
  *                     each time a change to the source is detected. You can preview
- *                     the reference at localhost:9001/docs/reference/
+ *                     the reference at localhost:3021/docs/reference/
  *
  *  Note: `grunt test:nobuild` will skip the build step when running the tests,
  *  and only runs the test files themselves through the linter: this can save
@@ -96,7 +96,7 @@ module.exports = grunt => {
   const mochaConfig = {
     yui: {
       options: {
-        urls: ['http://localhost:9001/test/test-reference.html'],
+        urls: ['http://localhost:3021/test/test-reference.html'],
         reporter: reporter,
         run: false,
         log: true,
@@ -107,8 +107,8 @@ module.exports = grunt => {
     test: {
       options: {
         urls: [
-          'http://localhost:9001/test/test.html',
-          'http://localhost:9001/test/test-minified.html'
+          'http://localhost:3021/test/test.html',
+          'http://localhost:3021/test/test-minified.html'
         ],
         reporter: reporter,
         run: true,
@@ -371,7 +371,7 @@ module.exports = grunt => {
 
     // This is a static server which is used when testing connectivity for the
     // p5 library. This avoids needing an internet connection to run the tests.
-    // It serves all the files in the test directory at http://localhost:9001/
+    // It serves all the files in the test directory at http://localhost:3021/
     connect: {
       server: {
         options: {
@@ -381,7 +381,7 @@ module.exports = grunt => {
               icons: true
             }
           },
-          port: 9001,
+          port: 3021,
           keepalive: keepalive,
           middleware: function(connect, options, middlewares) {
             middlewares.unshift(
@@ -407,8 +407,8 @@ module.exports = grunt => {
               icons: true
             }
           },
-          port: 9001,
-          open: 'http://127.0.0.1:9001/docs/reference/',
+          port: 3021,
+          open: 'http://127.0.0.1:3021/docs/reference/',
           keepalive: keepalive,
           middleware: function(connect, options, middlewares) {
             middlewares.unshift(
@@ -434,8 +434,8 @@ module.exports = grunt => {
               icons: true
             }
           },
-          port: 9001,
-          open: 'http://127.0.0.1:9001/test/',
+          port: 3021,
+          open: 'http://127.0.0.1:3021/test/',
           keepalive: keepalive,
           middleware: function(connect, options, middlewares) {
             middlewares.unshift(
